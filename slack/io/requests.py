@@ -2,13 +2,17 @@ import json
 import time
 import logging
 
-import requests
-import websocket
-
 from . import abc
 from .. import events, sansio, methods, exceptions
 
 LOG = logging.getLogger(__name__)
+
+
+try:
+    import requests
+    import websocket
+except ImportError:
+    LOG.exception("Unable to import requests or websocket package")
 
 
 class SlackAPI(abc.SlackAPI):
